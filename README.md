@@ -5,7 +5,7 @@ This is the code for a bot client service implemented in Python using standard l
 
 Using it as-is is pretty standard, just go in and change server/nickname settings. However be careful because not all IRC networks are created equal, so the way I register and log in the bot may not work with everything yet.
 
-I have tested it on a friend's server as well as freenode. Freenode should work okay, but it may not. I need to work on it more just in case there are problems during the process.
+I have tested it on a friend's server as well as freenode. Freenode currently isn't working properly. This is partly due to how I parse messages, but also how freenode formats them. I need to work on it more and hopefully get this settled.
 
 Functions right now:
 
