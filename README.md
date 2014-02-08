@@ -10,6 +10,7 @@ I have tested it on a friend's server as well as freenode. Freenode currently is
 Functions right now:
 
 * @quote *username* "string" <-- the quotes will automatically be appended
+* @rem *username* <-- this will perform a look-up on the dictionary. if a key matching the input username is found, then the value will be printed as *username* said "something here"
 * @quit <-- this will end the service loop if you don't need the bot anymore.
 
 The bot script now handles a persistive dictionary. So when the bot quits, it'll serialize its current dictionary to a JSON file. When the script starts, it'll deserialize and load the current dictionary JSON into memory.
@@ -21,5 +22,3 @@ Then that quote will be saved into the dictionary and serialized to a JSON file 
 {"joshwertheim": "I\" love\" to\" sleep\" in!\""}
 
 Also up for consideration is how I should handle the bot possibly being run for multiple channels or servers.
-
-I also want to implement a function for searching for a given user's stored quote (if one exists). This will likely look like: @rem *username* and will perform a look-up using the dictionary.
