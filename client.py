@@ -8,7 +8,7 @@ class IRCClient(object):
 
     SERVER = ""
     sock = ""
-    INIT_CHANNEL = "#spike"
+    INIT_CHANNEL = "#hellcat"
 
     def __init__(self):
         self.sock = socket.socket()
@@ -58,7 +58,8 @@ user.identify()
 active = 1
 readbuffer = ""
 
-quoteDatabase = {}
+jsonData = open('quoteDatabase.json', 'rb')
+quoteDatabase = json.load(jsonData)
 
 while active:
     readbuffer = readbuffer + client.sock.recv(1024)
@@ -79,8 +80,11 @@ while active:
 
 
         if ":@quote" in line:
-            quote = "\"" " ".join(line[5:len(line)]) + "\""
+            quote = "\"" + " ".join(line[5:len(line)]) + "\""
             quoteDatabase[line[4]] = quote
+
+        if ":@rem" in line and line[4] in quoteDatabase:
+            client.sock.send("PRIVMSG " + client.INIT_CHANNEL + " " + line[4] + " said " + quoteDatabase[line[4]] + "\r\n")
 
         if(line[0] == "PING"):
             print(line)
@@ -92,3 +96,5 @@ while active:
 
 with open('quoteDatabase.json', 'wb') as export:
     json.dump(quoteDatabase, export)
+
+close(jsonData)
