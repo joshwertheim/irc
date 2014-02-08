@@ -20,7 +20,4 @@ Then that quote will be saved into the dictionary and serialized to a JSON file 
 
 My next commit should provide functionality for importing the current JSON dictionary for continual use. Not sure if I should only allow one quote per a user or not. Also up for consideration is how I should handle the bot possibly being run for multiple channels or servers.
 
-I also want to implement a function for searching for a given user's stored quote (if one exists). This will likely look like:
-@rem *username*
-
-and will perform a look-up using the dictionary.
+I also want to implement a function for searching for a given user's stored quote (if one exists). This will likely look like: @rem *username* and will perform a look-up using the dictionary.
