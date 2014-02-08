@@ -60,6 +60,7 @@ readbuffer = ""
 
 jsonData = open('quoteDatabase.json', 'rb')
 quoteDatabase = json.load(jsonData)
+jsonData.close()
 
 while active:
     readbuffer = readbuffer + client.sock.recv(1024)
@@ -78,10 +79,12 @@ while active:
         line = string.rstrip(line)
         line = string.split(line)
 
+        print line
 
         if ":@quote" in line:
             quote = "\"" + " ".join(line[5:len(line)]) + "\""
             quoteDatabase[line[4]] = quote
+            client.sock.send("PRIVMSG " + client.INIT_CHANNEL + " " + "This quote is now saved permanently to \"The Web.\"" + "\r\n")
 
         if ":@rem" in line and line[4] in quoteDatabase:
             client.sock.send("PRIVMSG " + client.INIT_CHANNEL + " " + line[4] + " said " + quoteDatabase[line[4]] + "\r\n")
@@ -96,5 +99,3 @@ while active:
 
 with open('quoteDatabase.json', 'wb') as export:
     json.dump(quoteDatabase, export)
-
-close(jsonData)
