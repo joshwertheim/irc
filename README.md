@@ -11,3 +11,5 @@ Functions right now:
 
 * @quote *username* "string" <-- the quotes will automatically be appended
 * @quit <-- this will end the service loop if you don't need the bot anymore.
+
+The @quote function will save the desired user's quote into a dictionary. For example, if you type:
